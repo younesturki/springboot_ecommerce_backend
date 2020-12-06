@@ -13,13 +13,14 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class CheckoutServiceImpl implements CheckoutService{
+public class CheckoutServiceImpl implements CheckoutService {
 
     private CustomerRepository customerRepository;
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository){
+    public CheckoutServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
     @Override
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
@@ -45,6 +46,7 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         // save to the database
         customerRepository.save(customer);
+
         // return a response
         return new PurchaseResponse(orderTrackingNumber);
     }
@@ -53,7 +55,7 @@ public class CheckoutServiceImpl implements CheckoutService{
 
         // generate a random UUID number (UUID version-4)
         // For details see: https://en.wikipedia.org/wiki/Universally_unique_identifier
-
+        //
         return UUID.randomUUID().toString();
     }
 }
